@@ -36,5 +36,12 @@ public class BookServices {
         book = ls.stream().filter(e-> e.getId()==id).findFirst().get();
         return book;
     }
+
+    // Add the new book
+
+    public Book addBook(Book b){
+        ls.add(b);
+        return b;
+    }
     
 }
