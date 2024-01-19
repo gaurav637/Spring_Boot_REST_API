@@ -1,28 +1,36 @@
 package boot_rest.rest_api.Controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import boot_rest.rest_api.Entities.Book;
+import boot_rest.rest_api.Services.BookServices;
 
 // @Controller
 @RestController
 public class BookController {
 
+    @Autowired
+    private BookServices bookServices;
+
    // @RequestMapping(value="/books" , method= RequestMethod.GET)
     //@ResponseBody
     @GetMapping("/books")
-    public Book getBooks(){
+    public List<Book> getBooks(){
 
-        Book book = new Book();
-        book.setId(101);
-        book.setTitle("java");
-        book.setAuthor("Balaguruswami");
+        return this.bookServices.getAllBooks();
+    }
 
-        return book;
+    @GetMapping("/books/{id}")// RequestMapping(value="/value/{id}",method=MappingMethod.GET);
+    public Book getBook(@PathVariable("id") int id1){
+       return bookServices.getBookById(id1);
     }
     
 }
