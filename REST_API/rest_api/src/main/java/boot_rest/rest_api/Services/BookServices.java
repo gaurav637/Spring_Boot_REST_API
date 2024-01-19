@@ -2,6 +2,7 @@ package boot_rest.rest_api.Services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -35,6 +36,25 @@ public class BookServices {
         Book book = null;
         book = ls.stream().filter(e-> e.getId()==id).findFirst().get();
         return book;
+    }
+
+    // Add the new book
+
+    public Book addBook(Book b){
+        ls.add(b);
+        return b;
+    }
+
+    // delete book 
+
+    public void deleteBook(int bid){// ls = ls.stream().filter(b1-> b1.getId()!=id).collect(Collectors.toList())
+        ls = ls.stream().filter(b1-> {
+            if(b1.getId() != bid){
+                return true;
+            }else{
+                return false;
+            }
+        }).collect(Collectors.toList());
     }
     
 }
