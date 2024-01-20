@@ -1,6 +1,18 @@
 package boot_rest.rest_api.Entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+// @Table(name="books") -> if you change the table name
 public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    // @Column(name="book_id") if you change the column name
     private int id;
     private String title;
     private String author;
