@@ -1,8 +1,11 @@
 package boot_rest.rest_api.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,11 +30,37 @@ public class BookController {
    // @RequestMapping(value="/books" , method= RequestMethod.GET)
     //@ResponseBody
     // get all books 
-    @GetMapping("/books")
-    public List<Book> getBooks(){
+    // @GetMapping("/books")
+    // public List<Book> getBooks(){
 
-        return this.bookServices.getAllBooks();
+    //     return this.bookServices.getAllBooks();
+    // }
+
+    // body of create ResponsBody() handling.
+
+    @GetMapping("/books")
+    public ResponseEntity<List<Book>> getBooks(){
+        List<Book> ls1 = bookServices.getAllBooks();
+        if(ls1.size()<=0){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.of(Optional.of(ls1));
+        
+
+        
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     // get single books
     @GetMapping("/books/{id}")// RequestMapping(value="/value/{id}",method=MappingMethod.GET);
@@ -62,5 +91,6 @@ public class BookController {
        this.bookServices.updateBook(book,bid); 
        return book;
     }
-    
+
 }
+
