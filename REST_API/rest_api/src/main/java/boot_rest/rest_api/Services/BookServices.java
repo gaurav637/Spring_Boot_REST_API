@@ -56,5 +56,17 @@ public class BookServices {
             }
         }).collect(Collectors.toList());
     }
+
+    // update books
+
+   public void updateBook(Book book,int bid){
+       ls = ls.stream().map(e-> {
+            if(e.getId()==bid){
+                e.setTitle(book.getTitle());
+                e.setAuthor(book.getAuthor());
+            }
+            return e;
+       }).collect(Collectors.toList());
+   }
     
 }
