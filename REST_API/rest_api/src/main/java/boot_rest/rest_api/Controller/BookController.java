@@ -46,7 +46,7 @@ public class BookController {
         if(ls1.size()<=0){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return ResponseEntity.of(Optional.of(ls1));
+        return ResponseEntity.status(HttpStatus.CREATED).body(ls1);
     }
 
 
