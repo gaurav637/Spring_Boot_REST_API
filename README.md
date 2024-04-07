@@ -1,4 +1,4 @@
-        ##### Spring Boot REST API #####
+        # Spring Boot REST API 
 - Overview
 This project is a robust implementation of a RESTful API using Spring Boot, a powerful framework for developing Java-based web applications. The API follows REST principles, providing a scalable and maintainable solution for building web services.
 
